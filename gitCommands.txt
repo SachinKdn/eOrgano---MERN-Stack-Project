@@ -13,3 +13,4 @@ To pull from origin:- git pull origin nameOfBranch
 To pull from origin:- git pull(for main branch only)
 To merge any branch in main branch: git merge nameOfBranch (POV: in main branch)
 To push from main to remote main:- git push
+To merge from main to any branchL:- git merge main
