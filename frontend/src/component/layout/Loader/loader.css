@@ -1,0 +1,37 @@
+
+.loading{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background-color: white;
+    max-width: 100%;
+}
+.loading > div{
+    display: grid;
+    place-items: center;
+}
+.loading > div > div{
+    width: 10vmax;
+    /* background-color: black; */
+    height: 10vmax;
+
+    border-bottom: 8px solid tomato;
+    border-radius: 50%;
+    animation: loadingRotate 1000ms linear infinite  ;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+}
+
+/* animation for rotating */
+@keyframes loadingRotate {
+    to {
+        transform: rotateZ(-360deg);
+    }
+}
+
+.loading > div > h3{
+    margin: 10px;
+    font-weight: normal;
+    font-family: 'Franklin Gothic Medium';
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+}

@@ -1,0 +1,103 @@
+.shippingContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    width: 100vw;
+}
+.shippingBox{
+border: 1px solid gainsboro;
+border-radius: 15px;
+box-shadow: 0 0 13px rgba(221, 215, 215, 0.435);
+padding: 0.5vmax;
+width: 40%;
+/* text-align: center; */
+}
+.shippingBox > h2{
+    font-family: Poppins,Helvetica,sans-serif;
+    color: tomato;
+    font-weight: 700;
+    font-size: 1.2vmax;
+    text-align: center;
+    padding: 1vmax;
+    border-bottom: 1px solid tomato;
+}
+.shippingForm{
+    padding: 20px;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+.shippingForm > div{
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.shippingForm >div  > svg{
+    position: absolute;
+    font-size: 2vmax;
+    transform: translate(0.5vmax);
+}
+
+
+.shippingForm > div > input,
+.shippingForm > div > select{
+    
+  padding: 0.8vmax;
+  padding-left: 3vmax;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  outline: none;
+  font: 500 0.9vmax Poppins;
+    background-color: #f0f0f0;
+    
+    transition: all 0.5s;
+}
+.shippingForm > div > input::placeholder{
+    font: 300 0.8vmax Poppins;
+}
+.shippingBtn{
+    font: 500 1vmax Poppins;
+    border-radius: 15px;
+    transition: all 0.5s;
+    /* box-shadow: 0 0 13px rgba(221, 215, 215, 0.435); */
+    /* width: 25px; */
+}
+.shippingBtn:hover{
+    box-shadow: 0 0 8px rgb(85, 19, 148);
+    background-color: #fff;
+    color: tomato;
+}
+
+.shippingForm > div > input:hover,
+.shippingForm > div > select:hover{
+    background-color: #fffbf8;
+}
+.shippingForm > div:last-child{
+    margin: auto;
+    width: 80%;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+.shippingForm > div:last-child > input{
+    padding: 0.5vmax;
+    width: 25%;
+    border: 1px solid rgb(85, 19, 148);
+    color: rgb(85, 19, 148);
+}
+
+.shippingForm > div:last-child > input:last-child{
+    border: 1px solid tomato;
+    background-color: #fff;
+    color: tomato;
+}
+.shippingForm > div:last-child > input:last-child:hover{
+    box-shadow: 0 0 8px rgba(255, 99, 71, 0.617);
+    background-color: #fff;
+    color: tomato;
+}

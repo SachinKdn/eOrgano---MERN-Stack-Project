@@ -1,0 +1,60 @@
+.container{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    display: grid;
+    place-items: center;
+    background-color: white;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(167, 167, 167, 0.588);
+    width: 60%;
+    height: 40%;
+    align-items: center;
+    padding: 0 2vmax;
+    box-sizing: border-box;
+    /* justify-content: space-around; */
+}
+.box > h2{
+    font: 500 2vmax "Lexend";
+    text-align: center;
+    margin-top: 1vmax;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.267);
+    margin-bottom: 2vmax;
+
+}
+.info{
+    margin: 2vmax 0;
+}
+.info > p{
+    padding:  0.5vmax 0;
+    text-align: center;
+    font: 300 1vmax "Lexend";
+    color: rgb(49, 49, 49);
+}
+
+.box > span{
+    padding:  0.5vmax 0;
+    text-align: center;
+    font: 300 0.9vmax "Arial";
+    color: tomato;
+}
+
+.data > a{
+    padding:  0.5vmax 0;
+    text-align: center;
+    font: 500 1.1vmax "Roboto";
+    color: rgb(49, 49, 49);
+}
+
+.data > p{
+    padding:  0.5vmax 0;
+    text-align: center;
+    font: 300 0.8vmax "Arial";
+}

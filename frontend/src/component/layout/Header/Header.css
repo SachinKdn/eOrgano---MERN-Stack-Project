@@ -1,0 +1,52 @@
+/* .speedDialIcon{
+    border: 2px solid tomato;
+    padding: 0.2vmax;
+    width: 5vmax;
+    border-radius: 100%;
+} */
+.speedDial {
+    position: fixed;
+    right: 3vmax;
+    top: 3vmax;
+  }
+  .speedDialIcon {
+    
+    /* border: 3px solid tomato; */
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+    padding: 1px;
+  }
+
+  .box1{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  .box1 > span{
+    /* box-sizing: border-box; */
+    font: 300 1vmax "Lexend";
+    position: absolute;
+    /* padding: 0 3px; */
+    background-color: tomato;
+    color: white;
+    width: 40%;
+    height: 50%;
+    margin: auto;
+    text-align: center;
+    /* padding: 5px; */
+    /* height: max-content; */
+    border-radius: 50%;
+    transform: translate(1vmax,-1vmax);
+    /* transform: translateY(-1vmax); */
+    border: 1px solid tomato;
+  }
+
+
+  
+@media screen and (max-width: 600px){
+  .box1 > span{
+    width: 25%;
+    height: fit-content;
+  }
+}

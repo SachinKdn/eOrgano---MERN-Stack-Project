@@ -1,0 +1,43 @@
+.revierwCard{
+    /* border-top: 2px solid rgba(56, 56, 56, 0.417); */
+    margin: 0.4vmax 6vmax;
+    padding: 0.5vmax;
+    border-radius: 5px;
+    flex: none;
+    border: 1px solid rgba(56, 56, 56, 0.117);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.217);
+}
+.reviewerHeader{
+    display: flex;
+    width: 50%;
+    height: 4vmax;
+    justify-content: flex-start;
+    padding: 0.1vmax;
+}
+.reviewerHeader > div{
+    padding: 1vmax 0;
+    height: 3vmax;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.reviewerHeader > div > img{
+    width: 5vmax;
+    height: 5vmax;
+}
+.reviewerHeader > div > p{
+    color: rgba(0, 0, 0, 0.917);
+    font: 600 1vmax "Roboto";
+    margin-bottom: -0.5vmax;
+}
+.revierwCard > span{
+    padding: 0.8vmax;
+    color: rgba(0, 0, 0, 0.745);
+    font: 500 0.8vmax cursive;
+}
+.noReviews{
+    font: 400 1.3vmax "Gill Sans";
+    text-align: center;
+    color: rgba(0, 0, 0, 0.745);
+}

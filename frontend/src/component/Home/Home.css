@@ -1,0 +1,159 @@
+.banner{
+    height: 100vmin;
+    background-color: #D7F498;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* text-align: center; */
+    justify-content: center;
+    color: black;
+}
+.banner > h1{
+    margin: 5vmax;
+    font: 700 2.5vmax "Lexend"
+}
+.banner > h4{
+    /* font: 600 2.5vmax ; */
+    font-weight: 700;
+    /* font-size: 2.5vmax; */
+    font-size: 4vmax;
+    font-family: 'Franklin Gothic Medium';
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    /* Franklin Poppins */
+    color: #dc5c00;
+}
+.banner > p{
+    font: 700 1.2vmax "Roboto";
+}
+.banner > a > button{
+    font: 600 1vmax "Roboto";
+    width: 9vmax;
+    background-color: #D7F498;
+    margin-bottom: 5vmax;
+    padding: 1vmax 2.5vmax;
+    cursor: pointer;
+    transition: all 0.5s;
+    border: 0px solid white;
+    border-radius: 5px;
+    background-color: #faffef;
+}
+.banner > a > button:hover{
+    background-color: #fff;
+    /* background-color: #D7F498; */
+    color: #dc5c00;
+    /* color: #272D34; */
+    box-shadow: 0 0 12px #dc5c00;
+    
+}
+
+.banner::after {
+    content: ""; 
+    width: 100vw;
+    height: 100vmin;
+    background-color: #dc5c00;
+    /* background-color: rgb(39, 45, 42); */
+   position: absolute;
+   top: 0%;
+   left: 0;
+   max-width: 100%;
+   clip-path: polygon(100% 68%, 0 100%, 100% 100%);
+  }
+.homeHeading{
+    font: 700 1.4vmax "Roboto";
+    width: 20vmax;
+    padding: 1vmax;
+    text-align: center;
+    border-bottom: 1px solid rgba(21, 21, 21, 0.5);
+    margin: 5vmax auto;
+    color: rgb(0,0,0,0.8);
+}
+#container{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2vmax auto;
+    width: 80vw;
+    justify-content: center;
+}
+.productCard{
+    width: 15vmax;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: rgb(48, 48, 48);
+    margin: 2vmax;
+    transition: all 0.5s;
+    padding-bottom: 0.5vmax;
+    overflow: hidden;
+
+}
+.productCard > img{
+    /* padding: 1vmax; */
+    /* width: 20vmax; */
+    align-items: center;
+    
+    max-width: 100%; /* Set the maximum width of the image to 100% of the container width */
+    max-height: 100%; /* Set the maximum height of the image to 100% of the container height */
+  display: block; /* Enssure that the image is displayed as a block element */
+  margin: auto;
+}
+.productCard > p{
+    transition: all 0.5s;
+    margin: 1vmax 0.5vmax;
+    font: 700 1.2vmax "Roboto";
+    margin-bottom: 0;
+}
+
+.productCard > div{
+    display: flex;
+    margin: 0.5vmax;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.productCard > div > span{
+    margin: 0.5vmax;
+    font: 300 0.7vmax "Roboto"
+}
+
+.productCard > span{
+    margin: 0.5vmax 0.5vmax;
+    color: tomato;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.2vmax;
+}
+
+.productCard:hover{
+    box-shadow: 0 0 5px rgba(21, 21, 21, 0.5);
+    border-radius: 7px;
+    transform: translateY(-1vmin)
+}
+.productCard:hover > p{
+   color: #2874f0;
+}
+
+@media screen and (max-width : 600px){
+    .productCard{
+        border: 0.5px solid rgba(21, 21, 21, 0.5);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.418);
+        border-radius: 20px;
+        padding: 15px;
+    
+    }
+    .productCard > p{
+        font-size: 1.7vmax;
+    }
+    .productCard > div{
+        margin: 0vmax;
+        /* display: block; */
+        align-items:start;
+        flex-direction: column;
+    }
+
+    .productCard > span{
+        font-size: 1.5vmax;
+    }
+    .productCard > div > span{
+        margin: 0 0.5vmax;
+        font: 300 1vmax "Roboto"
+    }
+    
+}

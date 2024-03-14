@@ -1,0 +1,18 @@
+.MuiStepConnector-line {
+    display: none !important;
+  }
+  
+  .MuiStepConnector-root {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.349);
+  }
+  
+  .MuiStepConnector-active,
+  .MuiStepConnector-completed {
+    background-color: tomato;
+  }
+
+  .MuiTypography-root > p{
+    font-family: unset;
+    font: 500 0.9vmax "Lexend";
+  }
