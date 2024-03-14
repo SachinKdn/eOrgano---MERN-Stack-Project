@@ -2,3 +2,4 @@ To create a new branch use:- git branch nameOfBranch
 To see all branches:- git branch
 To switch into branched:- git checkout nameOfBranch
 To make and switch in branch:- git checkout -b nameOfBranch
+This line is temporary.
