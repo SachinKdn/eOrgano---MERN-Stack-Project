@@ -2,7 +2,11 @@ To create a new branch use:- git branch nameOfBranch
 To see all branches:- git branch
 To switch into branched:- git checkout nameOfBranch
 To make and switch in branch:- git checkout -b nameOfBranch
+
 To add and commit in one command:- git commit -a -m "msg"
 To push any branch to origin:- git push origin nameOfBranch
 To pull the origin code in master:- git pull origin master(is master of origin se latest code pull kr rhe h)
 To pull from the origin master in any branch:- git pull origin master (POV: in any other branch)
+
+This line is temporary.
+
