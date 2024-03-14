@@ -12,7 +12,7 @@ node_modules
 build
 
 #env file
-.env
+.env*
 # misc
 .DS_Store
 .env.local
