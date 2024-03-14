@@ -5,13 +5,9 @@ To make and switch in branch:- git checkout -b nameOfBranch
 
 To add and commit in one command:- git commit -a -m "msg"
 To push any branch to origin:- git push origin nameOfBranch
-To pull the origin code in master:- git pull origin master(is master of origin se latest code pull kr rhe h)
+To pull the origin code in master:- git pull origin master(if master of origin se latest code pull kr rhe h)
 To pull from the origin master in any branch:- git pull origin master (POV: in any other branch)
 To pull from origin:- git pull origin nameOfBranch
 To pull from origin:- git pull(for main branch only)
-
-
-this line added by main
-
-hii sachin
-hii main
+To merge any branch in main branch: git merge nameOfBranch (POV: in main branch)
+To push from main to remote main:- git push
