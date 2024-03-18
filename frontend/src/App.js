@@ -7,7 +7,6 @@ import React
   from 'react';
 import WebFont from "webfontloader"
 import Footer from "./component/layout/Footer/Footer.js"
-import Loader from "./component/layout/Loader/loader"
 import Home from "./component/Home/Home.js"
 import ProductDetails from "./component/Product/ProductDetails.js"
 import Products from "./component/Product/Products.js"
@@ -50,7 +49,7 @@ function App() {
     const { data } = await axios.get("/api/v1/stripeapikey");
 
     setStripeApiKey(data.stripeApiKey);
-    console.log(stripeApiKey)
+    // console.log(stripeApiKey)
   }
 
 

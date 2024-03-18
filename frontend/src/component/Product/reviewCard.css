@@ -31,6 +31,9 @@
     font: 600 1vmax "Roboto";
     margin-bottom: -0.5vmax;
 }
+.revierwCard > div > div> span{
+    margin-top: 0.5vmax;
+}
 .revierwCard > span{
     padding: 0.8vmax;
     color: rgba(0, 0, 0, 0.745);
