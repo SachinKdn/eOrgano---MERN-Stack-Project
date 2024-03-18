@@ -1,15 +1,25 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
-import ReactStars from "react-rating-stars-component";
 import "./productDetails.css";
-import { clearErrors, getProductDetails } from "../../actions/productAction";
+import { clearErrors, getAllReviews, getProductDetails, newReview } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 import { useParams , useNavigate} from "react-router-dom";
 import ReviewCard from "./ReviewCard.js";
 
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+
 import Loader from "../layout/Loader/loader";
 import { addItemsToCart } from "../../actions/cartAction";
+import { NEW_REVIEW_RESET } from "../../constants/prodctConstants";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
@@ -35,26 +45,47 @@ const ProductDetails = () => {
   let { id } = useParams();
   const alert = useAlert();
 
+
+  const [open, setOpen] = React.useState(false);
+  const [rating, setRating] = React.useState(0);
+  const { success, error: reviewError } = useSelector(
+    (state) => state.newReview
+  );
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const addToCart = ()=>{
     dispatch(addItemsToCart(id,quantity))
     alert.error("Item Added To Cart")
     navigate('/products')
   }
   const options = {
-    edit: false,
-    color: "rgba(20,20,20,0.1)",
-    activeColor: "tomato",
-    size: window.innerWidth < 600 ? 20 : 25,
+    readOnly:true,
     value: product.ratings,
-    isHalf: true,
+    precision:0.5,
+    size:"large"
   };
   useEffect(() => {
     if(error){
       alert.error(error);
       dispatch(clearErrors())
     }
+    if (reviewError) {
+      alert.error(reviewError);
+      dispatch(clearErrors());
+    }
+
+    if (success) {
+      alert.success("Review Submitted Successfully");
+      dispatch({ type: NEW_REVIEW_RESET });
+    }
+    dispatch(getAllReviews(id))
     dispatch(getProductDetails(id));
-  }, [dispatch, id,alert,error]);
+  }, [dispatch, id,error, alert, reviewError, success]);
 
   return (
     <Fragment>
@@ -95,8 +126,8 @@ const ProductDetails = () => {
                 <p>Product #{product._id}</p>
               </div>
               <div className="detailsBlock-2">
-                <ReactStars {...options} />
-                <span>({product.numOfReviews} Reviews)</span>
+                <Rating {...options} />
+                <span className="detailsBlock-2-span">({product.numOfReviews} Reviews)</span>
               </div>
               <div className="detailsBlock-3">
                 <h1>${product.price}</h1>
@@ -106,7 +137,7 @@ const ProductDetails = () => {
                     <input readOnly type="number" value={quantity} />
                     <button onClick={increaseQuantity}>+</button>
                   </div>
-                  <button disabled={product.stock < 1 ?true:false} onClick={addToCart}>Add To Cart</button>
+                  <button disabled={product.stock < 1 ? true:false} onClick={addToCart}>Add To Cart</button>
                 </div>
                 <p>
                   Stock:
@@ -120,7 +151,7 @@ const ProductDetails = () => {
                 <p>{product.description}</p>
               </div>
 
-              <button className="submitReview">Write A Review</button>
+              <button className="submitReview" onClick={handleClickOpen}>Write A Review</button>
             </div>
           </div>
           <h3 className="reviewsHeading">REVIEWS</h3>
@@ -133,6 +164,60 @@ const ProductDetails = () => {
           ) : (
             <p className="noReviews">No Reviews Yet</p>
           )}
+
+
+<Dialog
+        open={open}
+        onClose={handleClose}
+        PaperProps={{     // Props applied to the Paper element.
+          component: 'form',
+          onSubmit: (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.currentTarget);
+            // const formJson = Object.fromEntries(formData.entries());
+            // const email = formJson.email;
+            // console.log(email);
+            handleClose();
+            // const myForm = new FormData();
+
+    // myForm.set("rating", rating);
+    // myForm.set("comment", comment);
+    formData.set("productId", id);
+    formData.set("rating", rating);
+console.log(rating)
+    dispatch(newReview(formData));
+
+          },
+        }}
+        style={{textAlign:"center"}}
+      >
+        <DialogTitle style={{ fontFamily:"Lexend",textAlign:"center"}}>Add New Review</DialogTitle>
+        <DialogContent>
+          <DialogContentText  style={{ fontFamily:"Roboto",textAlign:"center" , marginBottom:"1.2vmax"}}>
+            Please enter your valuable review here
+          </DialogContentText>
+          
+<Typography component="legend">Review with stars</Typography>
+<Rating name="ratingInput" onChange={(e) => setRating(e.target.value)}
+                value={rating}
+                size="large" />
+          <TextField
+            autoFocus
+            required
+            margin="dense"
+            id="comment"
+            name="comment"
+            label="Comment"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="secondary">Cancel</Button>
+          <Button type="submit">Submit</Button>
+        </DialogActions>
+      </Dialog>
         </Fragment>
       )}
     </Fragment>

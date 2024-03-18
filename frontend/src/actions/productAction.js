@@ -4,6 +4,7 @@ import {
     ALL_PRODUCT_REQUEST,
     ALL_PRODUCT_SUCCESS,
     PRODUCT_DETAILS_REQUEST,
+    NEW_REVIEW_REQUEST,NEW_REVIEW_FAIL,NEW_REVIEW_SUCCESS,ALL_REVIEW_REQUEST,ALL_REVIEW_FAIL,ALL_REVIEW_SUCCESS,
     PRODUCT_DETAILS_FAIL,
     PRODUCT_DETAILS_SUCCESS,
     CLEAR_ERRORS,
@@ -39,6 +40,7 @@ import {
     dispatch({type:CLEAR_ERRORS})
   }
 
+// get single product details by ID
 export const getProductDetails = (id)=> async (dispatch)=>{
     try{
         dispatch({type:PRODUCT_DETAILS_REQUEST});
@@ -57,3 +59,45 @@ export const getProductDetails = (id)=> async (dispatch)=>{
     }
   }
 
+// NEW REVIEW
+export const newReview = (reviewData) => async (dispatch) => {
+  try {
+    console.log(reviewData.rating)
+    dispatch({ type: NEW_REVIEW_REQUEST });
+
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+
+    const { data } = await axios.put(`/api/v1/review`, reviewData, config);
+
+    dispatch({
+      type: NEW_REVIEW_SUCCESS,
+      payload: data.success,
+    });
+  } catch (error) {
+    dispatch({
+      type: NEW_REVIEW_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// GET ALL REVIEWS
+export const getAllReviews = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_REVIEW_REQUEST });
+
+    const { data } = await axios.get(`/api/v1/reviews/${id}`);
+
+    dispatch({
+      type: ALL_REVIEW_SUCCESS,
+      payload: data.reviews,
+    });
+  } catch (error) {
+    dispatch({
+      type: ALL_REVIEW_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
