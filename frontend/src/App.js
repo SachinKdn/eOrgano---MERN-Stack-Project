@@ -34,9 +34,13 @@ import { loadStripe } from '@stripe/stripe-js';
 import OrderSuccess from "./component/Cart/OrderSuccess";
 import MyOrders from "./component/Order/MyOrders.js";
 import OrderDetails from "./component/Order/OrderDetails.js";
+import Dashboard from "./component/Admin/Dashboard.js";
+import ProductList from "./component/Admin/ProductList.js";
+import NewProduct from "./component/Admin/NewProduct.js";
+import UpdateProduct from './component/Admin/UpdateProduct';
 
 function App() {
-  const {isAuthenticated, user} = useSelector((state)=>state.user)
+  const {loading,isAuthenticated, user} = useSelector((state)=>state.user)
 
   const [stripeApiKey, setStripeApiKey] = useState("");
   console.log(stripeApiKey)
@@ -67,8 +71,10 @@ function App() {
   },[]);
 
   // ProtectedRoute component to wrap around your protected components
-function ProtectedRoute({ children }) {
-  return isAuthenticated === true ? children : <Navigate to="/login" replace /> ;
+function ProtectedRoute({ isAdmin, children }) {
+  if(loading === false){
+    return isAuthenticated === true || (isAdmin === true && user.role === "admin") ? children : <Navigate to="/login" replace /> ;
+  }
 }
   return (
       <Router> 
@@ -154,6 +160,38 @@ function ProtectedRoute({ children }) {
         } 
       />
 
+      <Route 
+        path="/admin/dashboard"
+        element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard /> {/* Your protected component here */}
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/admin/products"
+        element={
+          <ProtectedRoute isAdmin={true}>
+            <ProductList /> {/* Your protected component here */}
+          </ProtectedRoute>
+        } 
+      />
+        <Route 
+        path="/admin/product"
+        element={
+          <ProtectedRoute isAdmin={true}>
+            <NewProduct /> {/* Your protected component here */}
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/admin/product/:id"
+        element={
+          <ProtectedRoute isAdmin={true}>
+            <UpdateProduct /> {/* Your protected component here */}
+          </ProtectedRoute>
+        } 
+      />
       {/* ProtectedRoute is a component that takes in children (the component you want to protect) and checks if the user is authenticated. If the user is not authenticated, it redirects to the login page.
 For any protected route, you wrap the component in the ProtectedRoute component using the element prop.
 The replace prop in <Navigate to="/login" replace /> is used to replace the current entry in the history stack, meaning the user won't be able to go back to the protected route using the browser's back button after being redirected to the login page. */}

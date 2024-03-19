@@ -2,9 +2,30 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const Product = require("../models/productModel");
 const ErrorHandler = require("../utils/errorHandler");
 const ApiFeatures = require("../utils/apiFeatures");
+const cloudinary = require("cloudinary")
 
 //create product -- admin
 exports.createProduct = catchAsyncErrors(async (req, res) => {
+  let images = [];
+  if(typeof req.body.images === "string"){//agar string h to mtlb ki ek hee url aaya h -> ek hee image h
+    images.push(req.body.images);
+  }else{
+    images = req.body.images;
+  }
+  const imagesLinks = [];
+
+  for (let i = 0; i < images.length; i++) {
+    const result = await cloudinary.v2.uploader.upload(images[i],{
+      folder:"products",
+      // width:550,//resize it to a width of 150 pixels,
+      crop:"scale",//maintain the original aspect ratio.
+  })
+    imagesLinks.push({
+      public_id:result.public_id,
+      url:result.secure_url,
+  })
+  }
+  req.body.images = imagesLinks;
   req.body.user = req.user.id;
   // ye-> req.user hmare paas h kyunki isAuthorizedUser middleware ne request mein push krdiya user, toh vhaan se user ki id lekr req.body mein de di "user" field ko
   // hence product k saath user ki id bhi save hogyi ki ye product kis user ne create kiya h
@@ -36,12 +57,49 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
     .json({ success: true, products, productsCount, resultPerPage,filteredProductsCount });
 });
 
+// fetch all products (admin)
+exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
+ const products = await Product.find();
+  res
+    .status(200)
+    .json({ success: true, products, products });
+});
+
 // updation of product -- admin
 exports.updateProduct = catchAsyncErrors(async (req, res) => {
   let product = await Product.findById(req.params.id);
   if (!product) {
     return next(new ErrorHandler("Product Not Found", 404));
     // return res.status(404).send("Not Found..")
+  }
+
+  // images start here
+  let images = [];
+  if(typeof req.body.images === "string"){//agar string h to mtlb ki ek hee url aaya h -> ek hee image h
+    images.push(req.body.images);
+  }else{
+    images = req.body.images;
+  }
+  if (images !== undefined) {
+    // Deleting Images From Cloudinary
+    for (let i = 0; i < product.images.length; i++) {
+      await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+    }
+
+    const imagesLinks = [];
+
+    for (let i = 0; i < images.length; i++) {
+      const result = await cloudinary.v2.uploader.upload(images[i], {
+        folder: "products",
+      });
+
+      imagesLinks.push({
+        public_id: result.public_id,
+        url: result.secure_url,
+      });
+    }
+
+    req.body.images = imagesLinks;
   }
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true, //return the newer one as response
@@ -56,6 +114,11 @@ exports.deleteProduct = catchAsyncErrors(async (req, res) => {
   if (!product) {
     return next(new ErrorHandler("Product Not Found", 404));
     // return res.status(404).send("Not Found..")
+  }
+  // deleting images from cloudinary
+  for (let i = 0; i < product.images.length; i++) {
+    await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+    
   }
   product = await Product.findByIdAndDelete(req.params.id);
   res.status(200).json({ success: true, product });

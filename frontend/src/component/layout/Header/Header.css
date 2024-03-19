@@ -5,13 +5,13 @@
     border-radius: 100%;
 } */
 .speedDial {
+  box-shadow: unset;
     position: fixed;
     right: 3vmax;
     top: 3vmax;
   }
   .speedDialIcon {
-    
-    /* border: 3px solid tomato; */
+    box-shadow: unset;
     width: 56px;
     height: 56px;
     border-radius: 100%;

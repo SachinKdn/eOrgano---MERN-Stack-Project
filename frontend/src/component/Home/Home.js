@@ -35,6 +35,7 @@ const Home = () => {
                  <p>Welcome to </p>
                  <h4 >eOrgano</h4>
                  <h1>Find Amazing Products Below</h1>
+                 <h1>Order success hone k baad bhi nhi stock kmm ho rha</h1>
              <a href="#container1">
                  <button>
                      Scroll <CgMouse/>
