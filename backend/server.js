@@ -1,9 +1,12 @@
 const app = require("./app");
-const dotenv = require("dotenv");
 const connectDatabase = require("./config/database")
 const cloudinary = require("cloudinary")
-// config
-dotenv.config({path:"backend/config/config.env"})
+// config (ye hme jb jrurt pdti h jab hm server localhost pr ya npm run dev krke development/production mode mein chlare ho lekin in case npm run then iski jrurt nhi hoti, hosting platforms ka apna hona h)
+// unki config.env ho github pr puch nhi krte na
+if(process.env.NODE_ENV !== "PRODUCTION"){//ye built in nhi h (process.env.NODE_ENV) -> jo hositing platform hoga na uski env mein manually de denge taki yhaan constion check hojaye
+    require("dotenv").config({path:"backend/config/config.env"})
+}
+
 // handle uncaught exception
 process.on("uncaughtException",(err)=>{
     console.log(`Error: ${err.message}`);
