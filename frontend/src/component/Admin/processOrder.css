@@ -1,0 +1,311 @@
+.processOrderContainer{
+    box-sizing: border-box;
+    /* width: 100vw;
+    max-width: 100%; */
+    background-color: #fff;
+    display: flex;
+
+}
+.processOrderShippingBox{
+    margin: 2vmax auto;
+    width: 100%;
+    height: fit-content;
+    /* padding: 0 1vmax; */
+    /* display: flex;
+    flex-direction: column; */
+}
+.processOrderMetaData{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    /* padding: 1vmax; */
+    /* gap: ; */
+    /* margin-bottom: 1vmax; */
+    border-bottom:  1px solid #dcdcdc!important;
+    
+}
+.processOrderMetaData > div{    
+    /* border: 1px solid red; */
+    /* width: 50%; */
+    flex: 1;
+    padding: 1vmax;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.customerBox, .addressBox{
+    margin: 1vmax;
+    display: flex;
+    flex-direction: column;
+}
+.customerBox > div ,
+.addressBox > div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.customerBox{
+    justify-content: space-evenly;
+}
+.updateOrderForm {
+    /* padding: 3vmax; */
+    margin: 2vmax auto;
+    background-color: white;
+  }
+.normalText > svg{
+    width: 1.5vmax;
+    /* font-size: 1vmax; */
+}
+.title{
+    font: 500 1.4vmax Poppins;
+}
+.editBtn{
+    text-decoration: none;
+    font: 500 1vmax "Lexend";
+    color: rgb(17, 113, 202);
+    cursor: pointer;
+}
+
+.normalText{
+    font: 300 1vmax "Poppins";
+}
+
+
+.pinCode > p{
+    display: flex;
+    align-items: center;
+    
+}
+.productDetailsBox{
+    height: fit-content;
+    min-height: 25vh;
+    display: flex;
+    flex-direction: column;
+    /* overflow: auto; */
+    overflow-y: auto;
+    padding-bottom: 2vmax;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.productDetailsBox::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.productDetailsBox {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.productBox{
+    display: grid;
+    grid-template-columns: 1fr 4fr 2fr;
+    align-items: center;
+    padding: 0 1vmax;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+.productBox:hover{
+    border: 1px solid rgb(236, 236, 236);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgb(219, 219, 219);
+}
+.productBox >div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.3vmax;
+}
+
+.productBox > div:last-child{
+    align-items: center;
+}
+.productBox > div:last-child > p{
+    color: #388e3c;
+    font: 500 1.1vmax "Lexend";
+}
+.productBox > div > p{
+    font: 700 1vmax "Roboto";
+    padding: 0.5vmax 0;
+}
+.productBox > div> span{
+    color: #878787;
+    font-weight: 300;
+    font-size: 0.9vmax;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.productBox > div > button{
+    cursor: pointer;
+    font: 500 0.85vmax "Lexend";
+    color: tomato;
+    padding: 0.3vmax;
+    border: 1px solid tomato;
+    border-radius: 5px;
+    width: fit-content;
+    background-color: transparent;
+    margin: 0.5vmax 0;
+}
+.productBox > div > img{
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+.separater{
+    /* border: 0.5px solid rgba(213, 199, 199, 0.79); */
+    border-bottom: 1px solid #dcdcdc!important;
+    box-sizing: border-box;
+    /* margin: 1vmax 2vmax; */
+}
+.paymentDetailsBox{
+    margin: 1%;
+    padding: 0 1vmax;
+    width: 25%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+}
+.paymentDetailsBox > div:first-child {    
+    justify-content: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+}
+.paymentDetailsBox > div:first-child > p{    
+    font: 500 1.2vmax Poppins;
+    padding: 1vmax;
+}
+.paymentDetailsBox > .totalAmountDiv > p{
+    font: 500 1.05vmax Poppins;
+    color: #388e3c;
+    padding: 0.5vmax 1vmax;
+}
+.paymentDetailsBox > div{
+    display: flex;
+    justify-content: space-between;
+}
+.paymentDetailsBox > div > p{
+    font: 300 1vmax Poppins;
+    padding: 0.5vmax 1vmax;
+}
+.paymentDetailsBox > button{
+    outline: none;
+    border: 1px solid #fb641b;
+    background-color: #fb641b;
+    color: white;
+    font-family: "Lexend";
+    font-size: 1.4vmax;
+    padding: 0.6vmax;
+    border-radius: 7px;
+    margin: 1.5vmax 0;
+}
+@media screen and (max-width:600px) {
+    .ConfirmContainer{
+        flex-direction: column;
+        margin-top: 30px;
+    }
+    .productDetailsBox{
+        height: fit-content;
+        min-height: unset;
+    }
+    .shippingDetailsBox{
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+    }
+    .shippingDetailsBox >div{
+        margin: auto;
+    }
+    .productShippingDetailsBox{
+        box-sizing: border-box;
+        width: 90%;
+        margin-bottom: 50px;
+    }
+    .paymentDetailsBox{
+        margin-top: 150px;
+        width: 70%;
+        margin: auto;
+    }
+    .productBox > div > img{
+        width: 50px;
+        height: 50px;
+    }
+    .productBox > div:last-child > p{
+        text-align: center;
+        font: 500 0.8vmax Poppins;
+        color: #388e3c;
+        padding: 0.2vmax 0.5vmax;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  .updateOrderForm > div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+  .updateOrderForm > div > select {
+    padding: 1vmax 4vmax;
+    margin: 2rem 0;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 4px;
+    font: 300 0.9vmax cursive;
+    outline: none;
+  }
+  
+  .updateOrderForm > div > svg {
+    position: absolute;
+    transform: translateX(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0.623);
+  }
+  
+  @media screen and (max-width: 600px) {
+    .updateOrderForm {
+      padding: 5vmax;
+    }
+  
+    .updateOrderForm > div > select {
+      padding: 2.5vmax 5vmax;
+      font: 300 1.7vmax cursive;
+    }
+  
+    .updateOrderForm > div > svg {
+      font-size: 2.8vmax;
+    }
+  }

@@ -218,14 +218,15 @@ exports.getAllReviews = catchAsyncErrors(async (req, res, next) => {
 // delete a review --- Admin
 exports.deleteSingleReview = catchAsyncErrors(async (req, res, next) => {
   // firstly find product jiska delete krna h
-  const product = await Product.findById(req.params.id);
+  // const product = await Product.findById(req.params.id);
 
+  const product = await Product.findById(req.query.productId);
   if (!product) {
     return next(new ErrorHandler("Product Not Found", 404));
   }
 
   const reviews = product.reviews.filter(
-    (rev) => rev._id.toString() !== req.body.id
+    (rev) => rev._id.toString() !== req.query.id.toString()
   );
   const numOfReviews = product.reviews.length;
   let avg = 0;
@@ -239,7 +240,7 @@ exports.deleteSingleReview = catchAsyncErrors(async (req, res, next) => {
   // await product.save({validateBeforeSave: false});//ye best practice nhi h kyunki ye pure product documnet to again save krega
   // so we use findByIdAndUpdate()
   await Product.findByIdAndUpdate(
-    req.params.id,
+    req.query.productId,
     {
       reviews,
       ratings,

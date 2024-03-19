@@ -301,13 +301,13 @@ exports.getSingleUser = catchAsyncErrors(async (req,res,next)=>{
 
 // update user role details -- Admin
 exports.updateUserRole = catchAsyncErrors(async (req,res,next)=>{
-    
+    console.log(req.body)
     const newUserData = {
         name: req.body.name,
         email: req.body.email,
         role:req.body.role
     };
-    const user = await User.findByIdAndUpdate(req.user.id,newUserData,{
+    const user = await User.findByIdAndUpdate(req.params.id,newUserData,{
         new:true,
         runValidators:true,
         useFindAndModify:false 
@@ -332,9 +332,12 @@ exports.deleteUser = catchAsyncErrors(async (req,res,next)=>{
     //     success:true,
     //     msg: "User deleted successfully"
     // })
-    
+    if(user.avatar.url !== null){
+        const imageId = user.avatar.public_id;   
+        await cloudinary.v2.uploader.destroy(imageId);
+    }
     // method-2 to delete
-    user = await Product.findByIdAndDelete(req.params.id);
+    user = await User.findByIdAndDelete(req.params.id);
     res.status(200).json({
         success:true,
         user

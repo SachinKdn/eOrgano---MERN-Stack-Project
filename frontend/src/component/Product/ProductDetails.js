@@ -60,7 +60,7 @@ const ProductDetails = () => {
 
   const addToCart = ()=>{
     dispatch(addItemsToCart(id,quantity))
-    alert.error("Item Added To Cart")
+    alert.success("Item Added To Cart")
     navigate('/products')
   }
   const options = {

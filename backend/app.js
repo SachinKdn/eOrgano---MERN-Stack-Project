@@ -42,6 +42,9 @@ app.use("/api/v1",payment)
 //     let jwtToken = req.cookies.key;
 //     res.send('JWT Token from cookie: ' + jwtToken);
 //   });
+app.get('/check',(req,res)=>{
+  res.send('Cookie set successfully.');
+})
 
 // Middleware for error
 app.use(errorMiddleware);

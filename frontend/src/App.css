@@ -6,6 +6,12 @@
     scroll-behavior: smooth;
 
 }
+
+
+/* custom cursor
+body {
+    cursor: url("../public/cursor.png"), auto;
+  } */
 /* ye kyu --> kyunki jo input box tha type:number wala usme navigation aa  rhi thi inc\dec k liye usko remove krdiya */
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button{
