@@ -116,8 +116,8 @@ exports.forgotPassword = catchAsyncErrors(async(req,res,next)=>{
 
     await user.save({validateBeforeSave: false});//ye save kiya h kyunki jo method of token generate call kiya h to usne schema mein token bna to diya lekin usko abhi tk save nhi kiya i document of user mein kyunki user to phle he bna hua tha
     
-    const resetPasswordUrl = `${process.env.HOST_URL}/password/reset/${resetToken}`;
-    // const resetPasswordUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetToken}`;
+    // const resetPasswordUrl = `${process.env.HOST_URL}/password/reset/${resetToken}`;
+    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetToken}`;
     const message = `Your password reset token is : \n\n ${resetPasswordUrl} \n\n If you have not requested this mail then, please ignore it.`;
 
     try{

@@ -74,7 +74,7 @@ function App() {
     })
 
     store.dispatch(loadUser());
-    // getStripe();
+    getStripe();
   },[]);
 // ye jo right click k behaviour ko bnd krdiya
   // window.addEventListener("contextmenu", (e) => e.preventDefault());
