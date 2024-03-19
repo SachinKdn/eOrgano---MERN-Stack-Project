@@ -73,11 +73,13 @@ exports.updateOrder = catchAsyncErrors(async(req,res,next)=>{
         next(new ErrorHandler("You have already delivered this order",400));
     }
     
-    order.orderIems.forEach(async (order)=>{
-        await updateStock(order.product,order.quantity);
-    })
+    if(req.body.status === "Shipped"){
+        order.orderItems.forEach(async (order)=>{
+            await updateStock(order.product,order.quantity);
+        })
+    }
     order.orderStatus = req.body.status;
-
+    console.log(req.body)
     if(req.body.status === "Delivered"){
         order.deliveredAt = Date.now();
     }
@@ -106,8 +108,13 @@ exports.deleteOrder = catchAsyncErrors(async(req,res,next)=>{
     if(!order){
         next(new ErrorHandler("Order not found with this ID",404));
     }
+    console.log("req.params.id")
+    console.log(req.params.id)
+
     
-    await order.remove();
+  // Delete the document by its _id
+  await Order.deleteOne({ _id: req.params.id });
+    // await order.remove();
     res.status(200).json({
         success:true,
         msg: "Order deleted successfully"

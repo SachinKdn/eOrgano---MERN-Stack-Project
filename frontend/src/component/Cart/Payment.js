@@ -201,8 +201,9 @@ const submitHandler = async (e) => {
         <CheckoutSteps activeStep={2} />
         <div className="paymentContainer">
         <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
-          <Typography>Card Info</Typography>
-          <div>
+          <img src="/payment_card.png" alt="payment" style={{width:"15%",margin:"auto"}}/>
+          <Typography>Payment Information</Typography>
+          <div >
             <CreditCardIcon />
             <CardNumberElement className="paymentInput" />
           </div>

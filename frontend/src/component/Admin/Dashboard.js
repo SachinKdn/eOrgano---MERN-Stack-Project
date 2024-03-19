@@ -7,10 +7,14 @@ import { Doughnut, Line } from "react-chartjs-2";
 import Chart from 'chart.js/auto';
 import { useDispatch, useSelector } from 'react-redux';
 import {  getAdminProduct } from '../../actions/productAction';
+import { getAllOrders } from '../../actions/orderAction.js';
+import { getAllUsers } from '../../actions/userAction.js';
 const Dashboard = () => {
     let outOfStock = 0;
     const dispatch = useDispatch();
     const { products } = useSelector((state) => state.products);
+    const { orders } = useSelector((state) => state.allOrders);
+    const { users } = useSelector((state) => state.allUsers);
 
   {products &&
     products.forEach((item) => {
@@ -18,10 +22,15 @@ const Dashboard = () => {
         outOfStock += 1;
       }
     });}
-
+    let totalAmount = 0;
+    orders &&
+      orders.forEach((item) => {
+        totalAmount += item.totalPrice;
+      });
     useEffect(() => {
         dispatch(getAdminProduct());
-        // dispatch(getAllOrders()); 
+        dispatch(getAllOrders()); 
+        dispatch(getAllUsers())
       }, [dispatch]);
     const lineState = {
         labels: ["Initial Amount", "Amount Earned"],
@@ -31,7 +40,7 @@ const Dashboard = () => {
             backgroundColor: ["tomato"],
             hoverBackgroundColor: ["rgb(197, 72, 49)"],
             borderColor: 'rgb(75, 192, 192)',
-            data: [0,5200],
+            data: [0,totalAmount],
           },
         ],
       };
@@ -57,7 +66,7 @@ const Dashboard = () => {
         <div className="dashboardSummary">
           <div>
             <p>
-              Total Amount <br /> ₹{56000}
+              Total Amount <br /> ₹{totalAmount}
             </p>
           </div>
           <div className="dashboardSummaryBox2">
@@ -67,12 +76,11 @@ const Dashboard = () => {
             </Link>
             <Link to="/admin/orders">
               <p>Orders</p>
-              {/* <p>{orders && orders.length}</p> */}
+              <p>{orders && orders.length}</p>
             </Link>
             <Link to="/admin/users">
               <p>Users</p>
-              {/* <p>{users && users.length}</p> */}
-              <p>{76}</p>
+              <p>{users && users.length}</p>
             </Link>
           </div>
         </div>
