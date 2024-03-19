@@ -1,0 +1,15 @@
+npm i chart.js ye ek javascript ki mst library h chart bnane k liye
+
+npm i react-chartjs-2 ye ek package h upper wale ko or mst banne k liye
+
+(complex se complex chart bhi bhut easilt bna skte h isme)
+
+import { Doughnut } from "react-chartjs-2";
+-> ye pie chart ki trh hota h lekin isme sirf outline filled hoti h na ki andrr se bhi pie chart ki trh
+
+
+import { Line } from "react-chartjs-2";
+
+
+Note:-
+import Chart from 'chart.js/auto';  //must import for line chart usage!!

@@ -11,7 +11,13 @@
     display: flex;
     flex-direction: column;
   }
+  .greenColor > div{
+    color: green !important;
+}
 
+.redColor > div{
+    color: red !important;
+}
   #myOrdersHeading {
     text-align: center;
     font: 400 1.2vmax "Roboto";
