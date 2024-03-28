@@ -38,10 +38,10 @@ app.use("/api/v1",payment)
 
 // ye pr code likhne lg rha hu frontend ko attach krne ka
 // frontend k build k baad
-app.use(express.static(path.join(__dirname,"../frontend/build")));
-app.get("*",(req,res)=>{
-  res.sendFile(path.resolve(__dirname,"../frontend/build/index.html"))
-})
+// app.use(express.static(path.join(__dirname,"../frontend/build")));
+// app.get("*",(req,res)=>{
+//   res.sendFile(path.resolve(__dirname,"../frontend/build/index.html"))
+// })
 
 
 // app.get('/set-cookie', (req, res) => {
